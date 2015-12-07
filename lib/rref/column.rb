@@ -1,11 +1,13 @@
 module Rref
-  class Row
+  class Column
+    attr_reader :data
+
     def initialize(data)
       @data = data
     end
 
-    def [](index)
-      @data[index]
+    def ==(other)
+      data == other.data
     end
   end
 end
