@@ -1,5 +1,5 @@
 require "rref/version"
+require "rref/calculator"
 
 module Rref
-  # Your code goes here...
 end
