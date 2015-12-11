@@ -32,6 +32,18 @@ module Rref
       self
     end
 
+    def add(other_row)
+      unless other_row.is_a? Rref::Row
+        raise ArgumentError, 'must be a Rref::Row instance'
+      end
+      self.class.new(data.zip(other_row.data).map {|a,b| a + b})
+    end
+
+    def add!(other_row)
+      @data = add(other_row).data
+      self
+    end
+
     def ==(other)
       data == other.data
     end
