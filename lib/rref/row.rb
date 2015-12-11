@@ -7,5 +7,9 @@ module Rref
     def [](index)
       @data[index]
     end
+
+    def any_non_zero_values?
+      @data.any? {|i| i > 0}
+    end
   end
 end
