@@ -27,16 +27,6 @@ describe Rref::CoefficientMatrix do
     end
   end
 
-  describe '#multiply_row' do
-    it 'multiplies a row by a nonzero scalar value'
-    it 'raises argument error for zero value'
-    it 'returns a new row'
-  end
-
-  describe '#multiply_row!' do
-    it 'same as #multiply_row but assigns the value in place'
-  end
-
   describe '#add_scaled_other_row' do
     it 'adds another row that has been multiplied by a scalar'
   end

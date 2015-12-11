@@ -19,4 +19,18 @@ describe Rref::Row do
       expect(subject.leading_coefficient).to eq(4)
     end
   end
+
+  describe '#multiply_row' do
+    it 'multiplies a row by a nonzero scalar value'
+    it 'raises argument error for zero value'
+    it 'returns a new row'
+  end
+
+  describe '#multiply_row!' do
+    it 'same as #multiply_row but assigns the value in place'
+  end
+
+  describe '#reduce_row_by_leading_coefficient' do
+    it 'multiplies the row by the inverse of the leading coefficient'
+  end
 end
