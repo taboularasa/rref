@@ -26,4 +26,13 @@ describe Rref::CoefficientMatrix do
         .to eq([original_row_positions[1], original_row_positions[0]])
     end
   end
+
+  describe '#cursor_value' do
+    it 'returns the value of the cell under the cursor' do
+      cursor = double('Rref::Cursor', x: 0, y: 1)
+      allow(subject).to receive(:cursor) { cursor }
+
+      expect(subject.cursor_value).to eq(3)
+    end
+  end
 end

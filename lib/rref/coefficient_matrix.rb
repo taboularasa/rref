@@ -1,8 +1,10 @@
 module Rref
   class CoefficientMatrix
+    Cursor = Struct.new(:x, :y)
     attr_reader :rows
 
     def initialize(data)
+      @cursor = Rref::CoefficientMatrix::Cursor.new(0,0)
       @rows = data.map {|r| Rref::Row.new(r) }
     end
 
@@ -15,7 +17,13 @@ module Rref
     end
 
     def cursor_value
-      
+      rows[cursor.y][cursor.x]
+    end
+
+    private
+
+    def cursor
+      @cursor
     end
   end
 end
