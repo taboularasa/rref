@@ -12,4 +12,11 @@ describe Rref::Row do
       expect(subject.any_non_zero_values?).to eq(false)
     end
   end
+
+  describe '#leading_coefficient' do
+    it 'returns the left-most nonzero entry' do
+      subject = Rref::Row.new([0,4,1])
+      expect(subject.leading_coefficient).to eq(4)
+    end
+  end
 end

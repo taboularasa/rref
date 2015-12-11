@@ -11,5 +11,9 @@ module Rref
     def any_non_zero_values?
       @data.any? {|i| i > 0}
     end
+
+    def leading_coefficient
+      @data.detect {|i| i > 0 }
+    end
   end
 end
