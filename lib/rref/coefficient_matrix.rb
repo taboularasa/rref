@@ -20,6 +20,14 @@ module Rref
       rows[cursor.y][cursor.x]
     end
 
+    def current_row
+      rows[cursor.y]
+    end
+
+    def current_column
+      column(cursor.x)
+    end
+
     private
 
     def cursor

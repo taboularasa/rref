@@ -49,4 +49,22 @@ describe Rref::CoefficientMatrix do
       expect(subject.cursor_value).to eq(3)
     end
   end
+
+  describe '#current_row' do
+    it 'returns the row currently under the cursor y axis' do
+      cursor = double('Rref::Cursor', x: 0, y: 1)
+      allow(subject).to receive(:cursor) { cursor }
+
+      expect(subject.current_row).to eq(subject.rows[1])
+    end
+  end
+
+  describe '#current_column' do
+    it 'returns the column currently under the cursor x axis' do
+      cursor = double('Rref::Cursor', x: 1, y: 0)
+      allow(subject).to receive(:cursor) { cursor }
+
+      expect(subject.current_column).to eq(subject.column(1))
+    end
+  end
 end
