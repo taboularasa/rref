@@ -106,4 +106,10 @@ describe Rref::Row do
       expect(subject.fully_reduced?).to eq(false)
     end
   end
+
+  describe '#length' do
+    it "returns the length of it's data" do
+      expect(subject.length).to eq(subject.data.length)
+    end
+  end
 end

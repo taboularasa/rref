@@ -51,5 +51,9 @@ module Rref
     def fully_reduced?
       leading_coefficient == 1
     end
+
+    def length
+      data.length
+    end
   end
 end
