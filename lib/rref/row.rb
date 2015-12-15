@@ -3,7 +3,7 @@ module Rref
     attr_reader :data
 
     def initialize(data)
-      @data = data
+      @data = data.map { |e| Rational(e) }
     end
 
     def [](index)
@@ -46,6 +46,10 @@ module Rref
 
     def ==(other)
       data == other.data
+    end
+
+    def fully_reduced?
+      leading_coefficient == 1
     end
   end
 end

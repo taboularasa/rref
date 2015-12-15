@@ -96,4 +96,14 @@ describe Rref::Row do
       expect(row_a).to eq(row_b)
     end
   end
+
+  describe '#fully_reduced?' do
+    it 'returns true when the leading coefficient is 1' do
+      subject = Rref::Row.new([0,1,0])
+      expect(subject.fully_reduced?).to eq(true)
+
+      subject = Rref::Row.new([0,2,1])
+      expect(subject.fully_reduced?).to eq(false)
+    end
+  end
 end
