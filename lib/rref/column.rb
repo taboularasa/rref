@@ -18,5 +18,9 @@ module Rref
       raise RuntimeError unless fully_reduced?
       data.find_index(1)
     end
+
+    def length
+      data.length
+    end
   end
 end

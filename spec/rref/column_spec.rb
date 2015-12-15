@@ -30,4 +30,10 @@ describe Rref::Column do
       expect { subject.value_position }.to raise_error(RuntimeError)
     end
   end
+
+  describe '#length' do
+    it "returns the length of it's data" do
+      expect(subject.length).to eq(subject.data.length)
+    end
+  end
 end
