@@ -42,6 +42,78 @@ describe Rref::CoefficientMatrix do
     end
   end
 
+  describe '#remaining_cursor_movements?' do
+    let(:subject) { Rref::CoefficientMatrix.new([[1, 2, 3], [4, 5, 6]]) }
+
+    it "returns false if the cursor can't move to the right by 1" do
+      cursor = double('Rref::Cursor', x: 2, y: 0)
+      allow(subject).to receive(:cursor) { cursor }
+
+      expect(subject.remaining_cursor_movements?).to eq(false)
+    end
+
+    it "returns false if the cursor can't move down by 1" do
+      cursor = double('Rref::Cursor', x: 2, y: 0)
+      allow(subject).to receive(:cursor) { cursor }
+
+      expect(subject.remaining_cursor_movements?).to eq(false)
+    end
+
+    it 'returns false if all remaining positions are 0' do
+      subject = Rref::CoefficientMatrix.new([[0, 1, 3], [0, 0, 0], [0, 0, 0]])
+      expect(subject.remaining_cursor_movements?).to eq(false)
+    end
+
+    it 'returns true if the cursor can move down and to the right 1 place' do
+      subject = Rref::CoefficientMatrix.new([[1, 3], [0, 2]])
+      cursor = double('Rref::Cursor', x: 0, y: 0)
+      allow(subject).to receive(:cursor) { cursor }
+
+      expect(subject.remaining_cursor_movements?).to eq(true)
+    end
+  end
+
+  describe '#remaining_cursor_values?' do
+    it "returns false if the cursor only has 0's to advance to" do
+      subject = Rref::CoefficientMatrix.new([
+        [0, 0, 1, 2, 4, 6],
+        [0, 0, 0, 1, 3, 4],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0]
+      ])
+      cursor = double('Rref::Cursor', x: 3, y: 1)
+      allow(subject).to receive(:cursor) { cursor }
+
+      expect(subject.remaining_cursor_values?).to eq(false)
+    end
+
+    it 'returns true if the next cursor position is not 0' do
+      subject = Rref::CoefficientMatrix.new([
+        [0, 0, 1, 2, 4, 6],
+        [0, 0, 0, 1, 3, 4],
+        [0, 0, 0, 0, 4, 0],
+        [0, 0, 0, 0, 0, 0]
+      ])
+      cursor = double('Rref::Cursor', x: 3, y: 1)
+      allow(subject).to receive(:cursor) { cursor }
+
+      expect(subject.remaining_cursor_values?).to eq(true)
+    end
+
+    it 'returns true if any remaining cursor position is not 0' do
+      subject = Rref::CoefficientMatrix.new([
+        [0, 0, 1, 2, 4, 6],
+        [0, 0, 0, 1, 3, 4],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 3]
+      ])
+      cursor = double('Rref::Cursor', x: 3, y: 1)
+      allow(subject).to receive(:cursor) { cursor }
+
+      expect(subject.remaining_cursor_values?).to eq(true)
+    end
+  end
+
   describe '#advance_cursor' do
     it 'increments the cursor.x and cursor.y by 1' do
       starting_x = subject.cursor.x

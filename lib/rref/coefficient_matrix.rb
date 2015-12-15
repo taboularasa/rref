@@ -24,6 +24,17 @@ module Rref
       rows[cursor.y][cursor.x]
     end
 
+    def remaining_cursor_movements?
+      return false if cursor.x >= current_row.length - 1
+      return false if cursor.y >= current_column.length - 1
+      return false unless remaining_cursor_values?
+      true
+    end
+
+    def remaining_cursor_values?
+      remaining_rows.flat_map { |r| r.data[cursor.x..-1] }.reduce(&:+) != 0
+    end
+
     def advance_cursor
       cursor.x += 1
       cursor.y += 1
@@ -35,6 +46,10 @@ module Rref
 
     def other_rows
       rows.select {|r| r != current_row }
+    end
+
+    def remaining_rows
+      rows[cursor.y + 1..-1]
     end
 
     def current_column
