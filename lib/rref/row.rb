@@ -15,7 +15,7 @@ module Rref
     end
 
     def leading_coefficient
-      data.detect {|i| i > 0 }
+      data.detect {|i| i != 0 }
     end
 
     def reduce_row_by_leading_coefficient

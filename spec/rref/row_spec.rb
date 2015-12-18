@@ -17,6 +17,9 @@ describe Rref::Row do
     it 'returns the left-most nonzero entry' do
       subject = Rref::Row.new([0, 4, 1])
       expect(subject.leading_coefficient).to eq(4)
+
+      subject = Rref::Row.new([0, -4, 1])
+      expect(subject.leading_coefficient).to eq(-4)
     end
   end
 
@@ -109,6 +112,7 @@ describe Rref::Row do
 
   describe '#length' do
     it "returns the length of it's data" do
+      subject = Rref::Row.new([0, 3, 2, 6, 2])
       expect(subject.length).to eq(subject.data.length)
     end
   end

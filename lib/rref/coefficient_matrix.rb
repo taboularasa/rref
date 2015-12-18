@@ -65,5 +65,13 @@ module Rref
         row.add! current_row.multiply(row[cursor.y] * -1)
       end
     end
+
+    def ==(other)
+      rows == other.rows
+    end
+
+    def to_s
+      rows.map {|r| puts "#{r.data}\n"}
+    end
   end
 end
